@@ -41,20 +41,6 @@
   }
 }
 
-.mainNav{
-  margin: 20px;
-}
-
-.mainNav ul{
-  display: flex;
-}
-
-.mainNav li{
-  margin: 0 20px;
-  list-style: none;
-}
-
-.mainNav a{
-  text-decoration: none;
-  color: black;
+.homeImage {
+  border-radius: 20px;
 }

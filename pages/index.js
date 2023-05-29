@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -9,19 +9,13 @@ export default function Home() {
         <title>Hunting Coder</title>
       </Head>
 
-      <nav className={styles.mainNav}>
-        <ul>
-          <Link href='/'><li>Home</li></Link>
-          <Link href='/about'><li>About</li></Link>
-          <Link href='/blog'><li>Blog</li></Link>
-          <Link href='/contact'><li>Contact</li></Link>
-        </ul>
-      </nav>
 
       <main>
         <h1 className={styles.title}>
           Hunting Coder
         </h1>
+
+        <Image className={styles.homeImage} src='/homepic.jpg' alt='This is home Page Image' priority={true} width={518} height={315}></Image>
 
         <p className={styles.description}>
           A Blog for Hunting Coders written by Hunting Coder.
@@ -51,7 +45,6 @@ export default function Home() {
 
       <style jsx>{`
         main {
-          padding: 2rem 0;
           flex: 1;
           display: flex;
           flex-direction: column;
