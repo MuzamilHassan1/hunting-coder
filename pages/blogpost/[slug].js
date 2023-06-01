@@ -4,7 +4,7 @@ import styles from '../../styles/BlogPost.module.css'
 
 const slug = () => {
   const router = useRouter();
-  const { query: { slug } } = router;
+  const { query: { slug } } = router; //same as router.query.slug
 
   return (
     <div className={styles.container}>
