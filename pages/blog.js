@@ -3,15 +3,14 @@ import styles from '../styles/Blog.module.css'
 import Link from 'next/link'
 import axios from 'axios'
 
-const Blog = () => {
-  useEffect(()=>{
-    axios.get('http://localhost:3000/api/blogs')
-    .then(data => setBlogData(data.data))
-    .catch(error => console.log(error));
-  }, []);
+const Blog = (props) => {
+  // useEffect(()=>{
+  //   axios.get('http://localhost:3000/api/blogs')
+  //   .then(data => setBlogData(data.data))
+  //   .catch(error => console.log(error));
+  // }, []);
 
-  const [blogData, setBlogData] = useState([]);
-  console.log(blogData);
+  const [blogData, setBlogData] = useState(props.allBlogsData);
 
   return (
     <div className={styles.container}>
@@ -25,6 +24,15 @@ const Blog = () => {
       </div>
     </div>
   )
+}
+
+
+// This gets called on every request
+export async function getServerSideProps() {
+  let blogs = await axios.get('http://localhost:3000/api/blogs');
+  let allBlogsData = blogs.data;
+  // Pass data to the BLOG Component via props
+  return { props: { allBlogsData} };
 }
 
 export default Blog
