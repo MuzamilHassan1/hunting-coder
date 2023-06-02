@@ -1,16 +1,19 @@
-import { readFile, readdir } from 'fs';
+// import { readFile, readdir } from 'fs';
+import * as fs from 'fs'
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   // console.log(req.query) => params
 
-  let blogdata = []
-  readdir('blogdata', (error, files) => {
-    // files.forEach(file => {
-    //   readFile(`blogdata/${file}`, 'utf-8', (error, data) => {
-    //     if (error) res.status(404).json({ error: "Something went wrong" })
-    //     blogdata.push(JSON.parse(data))
-    //   })
-    // });
-    res.status(200).json(files);
-  });
+  let blogdata = [];
+  let files = await fs.promises.readdir('blogdata');
+  for (const file of files) {
+    let myFile = await fs.promises.readFile(`blogdata/${file}`, 'utf-8');
+    blogdata.push(JSON.parse(myFile));
+  }
+  res.status(200).json(blogdata);
 }
+
+//NOTES -> While fetching file we need to use promises
+//So we need to use fs.promises.method
+//also we can not use ForEach loop with promises
+//we need to use more specific loop like for of
